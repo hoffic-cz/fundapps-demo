@@ -57,14 +57,33 @@ public class Navigation {
     heading += change;
   }
 
+  private void move(int amount) {
+    switch (getHeading()) {
+      case 'N':
+        y += amount;
+        break;
+      case 'E':
+        x += amount;
+        break;
+      case 'S':
+        y -= amount;
+        break;
+      case 'W':
+        x -= amount;
+        break;
+      default:
+        throw new IllegalStateException();
+    }
+  }
+
   public void command(String commands) {
     for (int i = 0; i < commands.length(); i++) {
       switch (commands.charAt(i)) {
         case 'F':
-          y++;
+          move(1);
           break;
         case 'B':
-          y--;
+          move(-1);
           break;
         case 'R':
           turn('R');
