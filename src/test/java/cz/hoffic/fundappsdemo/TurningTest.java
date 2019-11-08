@@ -83,4 +83,27 @@ public class TurningTest {
 
     assertEquals('N', navigation.getHeading());
   }
+
+  @Test
+  public void turningEachDirection() {
+    var navigation = new Navigation();
+
+    assertEquals('N', navigation.getHeading());
+
+    navigation.command("R");
+
+    assertEquals('E', navigation.getHeading());
+
+    navigation.command("R");
+
+    assertEquals('S', navigation.getHeading());
+
+    navigation.command("R");
+
+    assertEquals('W', navigation.getHeading());
+
+    navigation.command("R");
+
+    assertEquals('N', navigation.getHeading());
+  }
 }

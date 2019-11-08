@@ -4,7 +4,7 @@ public class Navigation {
 
   private int x = 0;
   private int y = 0;
-  private char heading = 'N';
+  private char heading = 0;
 
   public int getX() {
     return x;
@@ -15,7 +15,46 @@ public class Navigation {
   }
 
   public char getHeading() {
-    return heading;
+    while (heading < 0) {
+      heading += 4;
+    }
+
+    while (heading >= 4) {
+      heading -= 4;
+    }
+
+    char output;
+
+    switch (heading) {
+      case 0:
+        output = 'N';
+        break;
+      case 1:
+        output = 'E';
+        break;
+      case 2:
+        output = 'S';
+        break;
+      case 3:
+        output = 'W';
+        break;
+      default:
+        throw new IllegalStateException();
+    }
+
+    return output;
+  }
+
+  private void turn(char way) {
+    int change = 0;
+
+    if (way == 'R') {
+      change = 1;
+    } else if (way == 'L') {
+      change = -1;
+    }
+
+    heading += change;
   }
 
   public void command(String commands) {
@@ -26,6 +65,12 @@ public class Navigation {
           break;
         case 'B':
           y--;
+          break;
+        case 'R':
+          turn('R');
+          break;
+        case 'L':
+          turn('L');
           break;
         default:
           throw new IllegalArgumentException();
