@@ -2,9 +2,21 @@ package cz.hoffic.fundappsdemo;
 
 public class Navigation {
 
+  public static final int DEFAULT_GRID_SIZE = 100;
+
+  public final int gridSize;
+
   private int x = 0;
   private int y = 0;
   private char heading = 0;
+
+  public Navigation() {
+    gridSize = DEFAULT_GRID_SIZE;
+  }
+
+  public Navigation(int gridSize) {
+    this.gridSize = gridSize;
+  }
 
   public int getX() {
     return x;
