@@ -19,6 +19,17 @@ public class Navigation {
   }
 
   public void command(String commands) {
-    return;
+    for (int i = 0; i < commands.length(); i++) {
+      switch (commands.charAt(i)) {
+        case 'F':
+          y++;
+          break;
+        case 'B':
+          y--;
+          break;
+        default:
+          throw new IllegalArgumentException();
+      }
+    }
   }
 }
