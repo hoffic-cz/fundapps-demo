@@ -50,14 +50,17 @@ public class MovementTest {
     assertEquals('N', navigation.getHeading());
   }
 
+  /**
+   * Updated to allow for wrapping around.
+   */
   @Test
   public void backFirstThenForward() {
-    var navigation = new Navigation();
+    var navigation = new Navigation(5);
 
     navigation.command("B");
 
     assertEquals(0, navigation.getX());
-    assertEquals(-1, navigation.getY());
+    assertEquals(4, navigation.getY());
     assertEquals('N', navigation.getHeading());
 
     navigation.command("F");

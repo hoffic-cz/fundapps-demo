@@ -86,6 +86,22 @@ public class Navigation {
       default:
         throw new IllegalStateException();
     }
+
+    while (x < 0) {
+      x += gridSize;
+    }
+
+    while (y < 0) {
+      y += gridSize;
+    }
+
+    while (x >= gridSize) {
+      x -= gridSize;
+    }
+
+    while (y >= gridSize) {
+      y -= gridSize;
+    }
   }
 
   public void command(String commands) {
