@@ -1,5 +1,7 @@
 package cz.hoffic.fundappsdemo;
 
+import java.util.Objects;
+
 public class Position {
 
   private int x;
@@ -16,5 +18,23 @@ public class Position {
 
   public int getY() {
     return y;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Position)) {
+      return false;
+    }
+    Position position = (Position) o;
+    return x == position.x &&
+        y == position.y;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(x, y);
   }
 }

@@ -1,5 +1,7 @@
 package cz.hoffic.fundappsdemo;
 
+import java.util.HashSet;
+
 public class Navigation {
 
   public static final int DEFAULT_GRID_SIZE = 100;
@@ -7,6 +9,7 @@ public class Navigation {
   public final int gridSize;
 
   private Radio radio;
+  private HashSet<Position> obstacles;
 
   private int x = 0;
   private int y = 0;
@@ -14,10 +17,12 @@ public class Navigation {
 
   public Navigation() {
     gridSize = DEFAULT_GRID_SIZE;
+    obstacles = new HashSet<>();
   }
 
   public Navigation(int gridSize) {
     this.gridSize = gridSize;
+    obstacles = new HashSet<>();
   }
 
   public int getX() {
@@ -72,6 +77,9 @@ public class Navigation {
   }
 
   private void move(int amount) {
+    int startX = x;
+    int startY = y;
+
     switch (getHeading()) {
       case 'N':
         y += amount;
@@ -104,6 +112,27 @@ public class Navigation {
     while (y >= gridSize) {
       y -= gridSize;
     }
+
+    if (collided(x, y)) {
+      announceCollision(x, y);
+
+      x = startX;
+      y = startY;
+    }
+  }
+
+  private boolean collided(int x, int y) {
+    var currentPosition = new Position(x, y);
+
+    return obstacles.contains(currentPosition);
+  }
+
+  private void announceCollision(int x, int y) {
+    radio.send(String.format(
+        "Obstacle at (%s, %s) encountered!",
+        x,
+        y
+    ));
   }
 
   public void command(String commands) {
@@ -132,6 +161,6 @@ public class Navigation {
   }
 
   public void addObstacle(Position position) {
-    return;
+    obstacles.add(position);
   }
 }
