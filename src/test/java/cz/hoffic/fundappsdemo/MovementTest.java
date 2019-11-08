@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class NavigationTest {
+public class MovementTest {
 
   @Test
   public void initialState() {
