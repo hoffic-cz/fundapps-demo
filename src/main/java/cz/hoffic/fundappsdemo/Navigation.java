@@ -6,6 +6,8 @@ public class Navigation {
 
   public final int gridSize;
 
+  private Radio radio;
+
   private int x = 0;
   private int y = 0;
   private char heading = 0;
@@ -123,5 +125,9 @@ public class Navigation {
           throw new IllegalArgumentException();
       }
     }
+  }
+
+  public void setRadio(Radio radio) {
+    this.radio = radio;
   }
 }
