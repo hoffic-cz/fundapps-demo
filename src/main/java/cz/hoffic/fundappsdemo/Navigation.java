@@ -130,4 +130,8 @@ public class Navigation {
   public void setRadio(Radio radio) {
     this.radio = radio;
   }
+
+  public void addObstacle(Position position) {
+    return;
+  }
 }
