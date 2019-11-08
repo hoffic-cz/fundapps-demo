@@ -13,6 +13,11 @@ public class Navigation {
 
   private int x = 0;
   private int y = 0;
+
+  /*
+  The heading stored here can contain any value, it only collapses to 0-3 when
+  getHeading() is called.
+   */
   private char heading = 0;
 
   public Navigation() {
